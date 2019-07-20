@@ -13,6 +13,11 @@
             android:icon="@drawable/ic_graphic"
             android:title="@string/statistics" />
 
+        <item
+            android:id="@+id/nav_graphic2"
+            android:icon="@drawable/ic_graphic"
+            android:title="@string/statistics" />
+
     </group>
 
 </menu>
