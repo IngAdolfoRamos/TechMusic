@@ -26,16 +26,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Music extends Fragment {
 
     private static final int MY_PERMISSION_REQUEST = 1;
-
     ArrayList<String> arrayList;
     ListView listView;
     ArrayAdapter<String> adapter;
+    TextView genreTV, genre1TV;
+
+    int totalSongs = 0;
 
     @Nullable
     @Override
@@ -44,6 +51,8 @@ public class Music extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_music,container,false);
 
         listView = view.findViewById(R.id.listView);
+        genreTV = view.findViewById(R.id.genreTV);
+        genre1TV = view.findViewById(R.id.genre1TV);
 
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -107,16 +116,21 @@ public class Music extends Fragment {
         Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor songCursor = contentResolver.query(songUri, null,null,null,null);
 
-        ArrayList<String> generos = new ArrayList<>();
+        String genero;
 
         if (songCursor != null && songCursor.moveToFirst()){
+
             int songTitle = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int songArtist = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int songLocation = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
 
             int id = songCursor.getColumnIndex(MediaStore.Audio.Media._ID);
 
+            int count = 0, banda = 0, hipHop = 0;
+
             do {
+
+                count++;
 
                 /*Genre*/
                 MediaMetadataRetriever mr = new MediaMetadataRetriever();
@@ -124,20 +138,10 @@ public class Music extends Fragment {
                         android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                         songCursor.getLong(id));
                 mr.setDataSource(getActivity(), trackUri);
-                String genre = mr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
 
-                /*if (genre == null){
-                    genre = "Not Specified";
-                }else{
-                    generos.add(genre);
-                }
+                genero = mr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
 
-                for (int i = 0; i < generos.size(); i++){
-                    generos.get(i);
-                    Toast.makeText(getActivity(), generos.get(i), Toast.LENGTH_SHORT).show();
-                }*/
                 /*End genre*/
-
 
                 String currenTitle = songCursor.getString(songTitle);
                 String currenArtist = songCursor.getString(songArtist);
@@ -145,10 +149,36 @@ public class Music extends Fragment {
                 arrayList.add("Title: " + currenTitle + "\n" +
                         "Artist: " + currenArtist + "\n" +
                         "Location: " + currenLocation + "\n" +
-                        "Genero: " + genre);
+                        "Genero: " + genero + "\n" +
+                        "Total" + count);
+
+                /*String songGenre = metadataRetriever.extractMetadata
+                        (MediaMetadataRetriever.METADATA_KEY_GENRE);*/
+
+                /*if(genero.equals("Banda")) {
+                    b++;
+                    Toast.makeText(getActivity(),"Genero encontrado: " + genero +
+                            " con " + b + " canciones", Toast.LENGTH_SHORT).show();
+                }*/
+
+                if(genero.equals("Banda")) {
+                    banda++;
+                    genreTV.setText(String.valueOf(banda));
+                }else if(genero.equals("www.MzHipHop.com")) {
+                    hipHop++;
+                    genre1TV.setText(String.valueOf(hipHop));
+                }
 
             }while (songCursor.moveToNext());
 
+
+
+            /*Total songs*/
+            /*totalSongs = count;*/
+            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
+            /*End total songs*/
         }
     }
+
 }
