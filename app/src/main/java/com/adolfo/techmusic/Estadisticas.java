@@ -31,6 +31,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.Console;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -118,8 +119,12 @@ public class Estadisticas extends Fragment {
             }while (songCursor.moveToNext());
 
             Collections.sort(numbers, Collections.<Integer>reverseOrder());
-            for (int i = 0; i < 10; i++){
-                duration.add(new BarEntry(i,numbers.get(i)));
+            try{
+                for (int i = 0; i < 10; i++){
+                    duration.add(new BarEntry(i,numbers.get(i)));
+                }
+            }catch (Exception e){
+
             }
 
             return duration;
@@ -130,7 +135,9 @@ public class Estadisticas extends Fragment {
 
     private ArrayList<PieEntry> getSongs(){
         ArrayList<PieEntry> generos = new ArrayList<>();
-        ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
+        ArrayList<Integer> genres = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+         ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
         Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor songCursor = contentResolver.query(songUri, null,null,null,null);
 
@@ -138,8 +145,8 @@ public class Estadisticas extends Fragment {
 
             int id = songCursor.getColumnIndex(MediaStore.Audio.Media._ID);
 
-            String bandaS = "", hipHopS = "", salsaS = "", cumbiaS = "", bachataS = "";
-            int count = 0, banda = 0, hipHop = 0, salsa = 0, cumbia = 0, bachata = 0;
+            String bandaS = "", hipHopS = "", salsaS = "", cumbiaS = "", bachataS = "", regionalMS = "";
+            int count = 0, banda = 0, hipHop = 0, salsa = 0, cumbia = 0, bachata = 0, regionalM = 0;
 
             do {
 
@@ -153,25 +160,49 @@ public class Estadisticas extends Fragment {
                 try{
                     String songGenre = mr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
 
-                    if(songGenre.equals("banda") || songGenre.equals("Banda")) {
+                    if(songGenre.equals("banda") || songGenre.equals("Banda") || songGenre.equals("BANDA")) {
 
                         banda++;
                         bandaS = songGenre;
+                        genres.add(banda);
+                        names.add(bandaS);
 
-                    }else if(songGenre.equals("www.MzHipHop.com")) {
+                    }else if(songGenre.equals("www.MzHipHop.com") || songGenre.equals("HipHop") || songGenre.equals("HIPHOP") || songGenre.equals("hiphop")) {
 
                         hipHop++;
                         hipHopS = songGenre;
+                        genres.add(hipHop);
+                        names.add(hipHopS);
 
                     }else if(songGenre.equals("Salsa") || songGenre.equals("salsa") || songGenre.equals("SALSA")) {
+
                         salsa++;
                         salsaS = songGenre;
+                        genres.add(salsa);
+                        names.add(salsaS);
+
                     }else if(songGenre.equals("Cumbia") || songGenre.equals("cumbia") || songGenre.equals("CUMBIA")) {
+
                         cumbia++;
                         cumbiaS = songGenre;
-                    }else if(songGenre.equals("Bachata")) {
+                        genres.add(cumbia);
+                        names.add(cumbiaS);
+
+                    }else if(songGenre.equals("Bachata") || songGenre.equals("bachata") || songGenre.equals("BACHATA")) {
+
                         bachata++;
                         bachataS = songGenre;
+                        genres.add(banda);
+                        names.add(bachataS);
+
+                    }
+                    else if(songGenre.equals("regional mexicano") || songGenre.equals("REGIONAL MEXICANO") || songGenre.equals("Regional Mexicano")) {
+
+                        regionalM++;
+                        regionalMS = songGenre;
+                        genres.add(regionalM);
+                        names.add(regionalMS);
+
                     }
                 }catch(Exception e){
 
@@ -179,13 +210,21 @@ public class Estadisticas extends Fragment {
 
             }while (songCursor.moveToNext());
 
-            generos.add(new PieEntry(banda, bandaS));
+            Collections.sort(genres, Collections.<Integer>reverseOrder());
+            try{
+                for (int i = 0; i < 5; i++){
+                    generos.add(new PieEntry(genres.get(i),names.get(i)));
+                }
+            }catch (Exception e){
+
+            }
+
+            /*generos.add(new PieEntry(banda, bandaS));
             generos.add(new PieEntry(hipHop, hipHopS));
             generos.add(new PieEntry(salsa, salsaS));
             generos.add(new PieEntry(cumbia, cumbiaS));
+            generos.add(new PieEntry(bachata, bachataS));*/
 
-/*            totalSongsTV.append(count + " canciones en total y ");
-            totalSongsTV.append("hay " + banda +" de " + genre);*/
             return generos;
         }
 

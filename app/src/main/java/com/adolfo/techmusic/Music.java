@@ -151,6 +151,7 @@ public class Music extends Fragment {
                         "Location: " + currenLocation + "\n" +
                         "Genero: " + genero + "\n" +
                         "Total" + count);
+                mr.release();
 
                 /*String songGenre = metadataRetriever.extractMetadata
                         (MediaMetadataRetriever.METADATA_KEY_GENRE);*/
