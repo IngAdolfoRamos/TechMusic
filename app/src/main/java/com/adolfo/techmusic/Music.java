@@ -161,13 +161,13 @@ public class Music extends Fragment {
                             " con " + b + " canciones", Toast.LENGTH_SHORT).show();
                 }*/
 
-                if(genero.equals("Banda")) {
+/*                if(genero.equals("Banda")) {
                     banda++;
                     genreTV.setText(String.valueOf(banda));
                 }else if(genero.equals("www.MzHipHop.com")) {
                     hipHop++;
                     genre1TV.setText(String.valueOf(hipHop));
-                }
+                }*/
 
             }while (songCursor.moveToNext());
 
