@@ -14,11 +14,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+<!--            <TextView
                 android:id="@+id/totalSongsTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"/>
+                android:textSize="15sp"/>-->
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/bar_chart"

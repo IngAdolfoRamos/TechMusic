@@ -40,7 +40,7 @@ public class Music extends Fragment {
     ArrayList<String> arrayList;
     ListView listView;
     ArrayAdapter<String> adapter;
-    TextView genreTV, genre1TV;
+    TextView genreTV;
 
     int totalSongs = 0;
 
@@ -52,7 +52,7 @@ public class Music extends Fragment {
 
         listView = view.findViewById(R.id.listView);
         genreTV = view.findViewById(R.id.genreTV);
-        genre1TV = view.findViewById(R.id.genre1TV);
+        //genre1TV = view.findViewById(R.id.genre1TV);
 
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -146,11 +146,10 @@ public class Music extends Fragment {
                 String currenTitle = songCursor.getString(songTitle);
                 String currenArtist = songCursor.getString(songArtist);
                 String currenLocation = songCursor.getString(songLocation);
-                arrayList.add("Title: " + currenTitle + "\n" +
-                        "Artist: " + currenArtist + "\n" +
-                        "Location: " + currenLocation + "\n" +
-                        "Genero: " + genero + "\n" +
-                        "Total" + count);
+                arrayList.add("Titulo: " + currenTitle + "\n" +
+                        "Artista: " + currenArtist + "\n" +
+                        "Localizacion: " + currenLocation + "\n" +
+                        "Genero: " + genero);
                 mr.release();
 
                 /*String songGenre = metadataRetriever.extractMetadata
@@ -172,11 +171,11 @@ public class Music extends Fragment {
 
             }while (songCursor.moveToNext());
 
-
+            genreTV.append("Total de canciones: " + count);
 
             /*Total songs*/
             /*totalSongs = count;*/
-            Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), String.valueOf(count), Toast.LENGTH_SHORT).show();
             //Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
             /*End total songs*/
         }

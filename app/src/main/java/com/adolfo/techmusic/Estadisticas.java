@@ -28,6 +28,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.Console;
@@ -41,7 +42,7 @@ import java.util.concurrent.ExecutionException;
 public class Estadisticas extends Fragment {
 
     int[] colorClassArray = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.MAGENTA};
-    TextView totalSongsTV;
+    //TextView totalSongsTV;
 
     @Nullable
     @Override
@@ -49,7 +50,7 @@ public class Estadisticas extends Fragment {
 
         View rootView =  inflater.inflate(R.layout.fragment_estadisticas,container,false);
 
-        totalSongsTV = rootView.findViewById(R.id.totalSongsTV);
+        //totalSongsTV = rootView.findViewById(R.id.totalSongsTV);
         BarChart barChart = rootView.findViewById(R.id.bar_chart);
         PieChart pieChart = rootView.findViewById(R.id.pie_chart);
 
@@ -76,7 +77,9 @@ public class Estadisticas extends Fragment {
         pieDataSet.setColors(colorClassArray);
 
         PieData pieData = new PieData(pieDataSet);
+        pieData.setValueFormatter(new PercentFormatter());
         pieChart.setData(pieData);
+        pieChart.setUsePercentValues(true);
         pieChart.invalidate();
         /*End Pie Chart*/
 
@@ -111,7 +114,7 @@ public class Estadisticas extends Fragment {
 
                 int durationInSeconds = Integer.parseInt(dura);
 
-                totalSongsTV.append(durationInSeconds + "\n");
+                //totalSongsTV.append(durationInSeconds + "\n");
 
                 numbers.add(durationInSeconds);
                 mr.release();
@@ -164,35 +167,35 @@ public class Estadisticas extends Fragment {
 
                         banda++;
                         bandaS = songGenre;
-                        genres.add(banda);
+                        /*genres.add(banda);*/
                         names.add(bandaS);
 
                     }else if(songGenre.equals("www.MzHipHop.com") || songGenre.equals("HipHop") || songGenre.equals("HIPHOP") || songGenre.equals("hiphop")) {
 
                         hipHop++;
                         hipHopS = songGenre;
-                        genres.add(hipHop);
+                        /*genres.add(hipHop);*/
                         names.add(hipHopS);
 
                     }else if(songGenre.equals("Salsa") || songGenre.equals("salsa") || songGenre.equals("SALSA") || songGenre.equals("sssalsa")) {
 
                         salsa++;
                         salsaS = songGenre;
-                        genres.add(salsa);
+                        /*genres.add(salsa);*/
                         names.add(salsaS);
 
                     }else if(songGenre.equals("Cumbia") || songGenre.equals("cumbia") || songGenre.equals("CUMBIA")) {
 
                         cumbia++;
                         cumbiaS = songGenre;
-                        genres.add(cumbia);
+                        /*genres.add(cumbia);*/
                         names.add(cumbiaS);
 
                     }else if(songGenre.equals("Bachata") || songGenre.equals("bachata") || songGenre.equals("BACHATA")) {
 
                         bachata++;
                         bachataS = songGenre;
-                        genres.add(banda);
+                        /*genres.add(banda);*/
                         names.add(bachataS);
 
                     }
@@ -200,7 +203,7 @@ public class Estadisticas extends Fragment {
 
                         regionalM++;
                         regionalMS = songGenre;
-                        genres.add(regionalM);
+                        /*genres.add(regionalM);*/
                         names.add(regionalMS);
 
                     }
@@ -208,24 +211,40 @@ public class Estadisticas extends Fragment {
 
                 }
 
+
             }while (songCursor.moveToNext());
+
+            genres.add(banda);
+            genres.add(hipHop);
+            genres.add(salsa);
+            genres.add(cumbia);
+            genres.add(banda);
+            genres.add(regionalM);
+
+/*            names.add(bandaS);
+            names.add(hipHopS);
+            names.add(salsaS);
+            names.add(cumbiaS);
+            names.add(bachataS);
+            names.add(regionalMS);*/
 
             Collections.sort(genres, Collections.<Integer>reverseOrder());
             try{
-                for (int i = 0; i < 5; i++){
+               /* for (int i = 0; i < 5 ; i++){
                     generos.add(new PieEntry(genres.get(i),names.get(i)));
-                }
+                }*/
             }catch (Exception e){
 
             }
 
-            /*generos.add(new PieEntry(banda, bandaS));
+            generos.add(new PieEntry(banda, bandaS));
             generos.add(new PieEntry(hipHop, hipHopS));
             generos.add(new PieEntry(salsa, salsaS));
             generos.add(new PieEntry(cumbia, cumbiaS));
-            generos.add(new PieEntry(bachata, bachataS));*/
+            generos.add(new PieEntry(bachata, bachataS));
+            generos.add(new PieEntry(regionalM, regionalMS));
 
-            return generos;
+            //return generos;
         }
 
         return generos;
