@@ -174,7 +174,7 @@ public class Estadisticas extends Fragment {
                         genres.add(hipHop);
                         names.add(hipHopS);
 
-                    }else if(songGenre.equals("Salsa") || songGenre.equals("salsa") || songGenre.equals("SALSA")) {
+                    }else if(songGenre.equals("Salsa") || songGenre.equals("salsa") || songGenre.equals("SALSA") || songGenre.equals("sssalsa")) {
 
                         salsa++;
                         salsaS = songGenre;
