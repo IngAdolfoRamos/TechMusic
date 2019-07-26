@@ -190,7 +190,8 @@ public class Estadisticas extends Fragment {
                 System.out.print(me2.getKey() + ": ");
                 int key = (int) me2.getKey();
                 System.out.println(me2.getValue());
-                generos.add(new PieEntry(key,me2.getValue()));
+                String value = (String) me2.getValue();
+                generos.add(new PieEntry(key,value));
                 l++;
                 if (l == 4){
                     break;
