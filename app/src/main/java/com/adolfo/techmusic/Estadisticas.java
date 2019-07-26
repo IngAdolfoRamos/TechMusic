@@ -126,9 +126,9 @@ public class Estadisticas extends Fragment {
 
         try{
             //System.out.println(genero[0] = generosDesordenados.get(0));
-            generosOrdenados.add(0,generosDesordenados.get(1));
+            generosOrdenados.add(0,generosDesordenados.get(0));
 
-            for (int i = 1; i < 7; i++){
+            for (int i = 0; i < generosDesordenados.size(); i++){
                 //System.out.println(i + "Desordenados: " + generosDesordenados.get(i));
                 int cont =0;
                 for(int j = 0; j < generosOrdenados.size(); j++){
@@ -160,6 +160,7 @@ public class Estadisticas extends Fragment {
             for (int a = 0; a < generosDesordenados.size(); a++){
                 System.out.println(a + " Desordenados: " + generosDesordenados.get(a));
             }
+            //Collections.sort(cuentas, Collections.<Integer>reverseOrder());
             for (int f = 0; f < generosOrdenados.size(); f++){
                 System.out.println(f + " Ordenados: " + generosOrdenados.get(f)+", "+cuentas.get(f));
             }

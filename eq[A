@@ -1,0 +1,59 @@
+[33mcommit 341a265269b3bae0392373675ee5a0166c6a3b3f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Fri Jul 26 01:18:31 2019 -0500
+
+    teacher corrections, it works ! :D
+
+[33mcommit 3650b70dde45f4d9ae885e652afc4b31be33481d[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sun Jul 21 17:39:30 2019 -0500
+
+    didnt know what
+
+[33mcommit d181636aea988b1b7cc919c51fc0e9d9dd02e6ca[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sun Jul 21 16:20:46 2019 -0500
+
+    adding sssalsa as a genre
+
+[33mcommit 733300308f04a056c7fc144f4ee0d13f045e2419[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sun Jul 21 03:14:27 2019 -0500
+
+    working fine
+
+[33mcommit ee3a2963aad8329c7c2eab6ca727123d7765b85c[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sun Jul 21 00:49:18 2019 -0500
+
+    Displaying songs duration in Bar chart
+
+[33mcommit 42527bf633d599a4aa0e1cdb73785077e8e63ee4[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sat Jul 20 21:33:14 2019 -0500
+
+    Displaying genre with most songs in Pie Chart
+
+[33mcommit 08a9a74890932b008bf3595ab2760439e21fc857[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Sat Jul 20 14:34:35 2019 -0500
+
+    Working fine
+
+[33mcommit 75235d7b1fecf63b0a842d5762583a70f5719c7f[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Fri Jun 28 20:40:00 2019 -0500
+
+    Creating music and statistics sections
+
+[33mcommit d2a330efa097f37ab9a1379d2b1dd0df2d9b7b8b[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Wed Jun 26 14:52:35 2019 -0500
+
+    Migrating to Android X
+
+[33mcommit 3a94c32807a2ae4516e3122d94d891c22224bab9[m
+Author: Adolfo Ramos <ingadolfo@icloud.com>
+Date:   Wed Jun 26 14:40:25 2019 -0500
+
+    Creating app
