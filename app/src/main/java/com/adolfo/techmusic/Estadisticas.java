@@ -41,9 +41,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.ExecutionException;
 
 
@@ -101,6 +107,7 @@ public class Estadisticas extends Fragment {
         ArrayList<String> generosDesordenados = new ArrayList<String>();
         ArrayList<String> generosOrdenados = new ArrayList<String>();
         ArrayList<Integer> cuentas = new ArrayList<Integer>();
+        Map<Integer,String> map = new HashMap<>();
         ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
         Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor songCursor = contentResolver.query(songUri, null, null, null, null);
@@ -163,12 +170,37 @@ public class Estadisticas extends Fragment {
             //Collections.sort(cuentas, Collections.<Integer>reverseOrder());
             for (int f = 0; f < generosOrdenados.size(); f++){
                 System.out.println(f + " Ordenados: " + generosOrdenados.get(f)+", "+cuentas.get(f));
+                map.put(cuentas.get(f),generosOrdenados.get(f));
+            }
+            System.out.println("El tamaño del HashMap es: " + map.size());
+
+            System.out.println("\n=== Iterating over the HashMap's entrySet using simple for-each loop ===");
+            for(Map.Entry<Integer,String> entry: map.entrySet()) {
+                System.out.println(entry.getKey() + " => " + entry.getValue());
             }
 
-            System.out.println("El tamaño es: "+generosOrdenados.size());
+            int l = 0;
+            Map<Integer, String> maps = new TreeMap<Integer, String>(Collections.reverseOrder());
+            maps.putAll(map);
+            System.out.println("After Sorting:");
+            Set set2 = maps.entrySet();
+            Iterator iterator2 = set2.iterator();
+            while(iterator2.hasNext()) {
+                Map.Entry me2 = (Map.Entry)iterator2.next();
+                System.out.print(me2.getKey() + ": ");
+                int key = (int) me2.getKey();
+                System.out.println(me2.getValue());
+                generos.add(new PieEntry(key,me2.getValue()));
+                l++;
+                if (l == 4){
+                    break;
+                }
+            }
+
+            //System.out.println("El tamaño es: "+generosOrdenados.size());
 
         }catch (Exception e){
-            System.out.println("Error:: "+e.getMessage());
+            System.out.println("Error: "+e.getMessage());
         }
         return generos;
     }
