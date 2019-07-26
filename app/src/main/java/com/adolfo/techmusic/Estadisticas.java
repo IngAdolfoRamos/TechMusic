@@ -193,7 +193,7 @@ public class Estadisticas extends Fragment {
                 String value = (String) me2.getValue();
                 generos.add(new PieEntry(key,value));
                 l++;
-                if (l == 4){
+                if (l == 5){
                     break;
                 }
             }
